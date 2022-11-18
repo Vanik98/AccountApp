@@ -1,0 +1,52 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.7.20'
+}
+
+android {
+    namespace 'com.vanik.accountapp'
+    compileSdk 32
+
+    defaultConfig {
+        applicationId "com.vanik.accountapp"
+        minSdk 21
+        targetSdk 32
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+apply plugin: 'kotlin-kapt'
+
+dependencies {
+    implementation kotlinDependencies.values()
+    implementation uiDependencies.values()
+    //
+    implementation kotlinxSerializationDependencie.values()
+    implementation coroutinesDependencies.values()
+    implementation architectureComponentsDependencies.values()
+    implementation roomDependencies.get("room")
+    kapt roomDependencies.get("roomCompiler")
+    implementation koinDependencies.values()
+    implementation kotlinxSerializationDependencie.values()
+    implementation glideDependencies.get("glide")
+    annotationProcessor glideDependencies.get("glideCompiler")
+    implementation retrofitDependencies.values()
+}
